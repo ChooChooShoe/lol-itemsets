@@ -1,0 +1,15 @@
+{
+  "name": "lol-itemsets",
+  "productName": "League Itemset Builder",
+  "description": "A standalone itemset builder for League of Legends",
+  "version": "0.0.0",
+  "author": "Timothy Durbano <timothy.durbano@gmail.com>",
+  "copyright": "© 2016",
+  "homepage": "",
+  "license": "MIT",
+  "main": "background.js",
+  "dependencies": {
+    "fs-jetpack": "^0.9.0",
+    "handlebars": "^4.0.5"
+  }
+}

@@ -1,0 +1,90 @@
+html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    //justify-content: center;
+    align-items: top;
+    font-family: sans-serif;
+    color: #777;
+}
+
+a {
+    text-decoration: none;
+}
+
+.item-iconview {
+  color: #fff;
+  display: inline-block;
+  border: solid 2px red;
+  background-color: #773333;
+  padding: 1px;
+  height: 72px;
+  width: 54px;
+}
+.item-iconview-icon {
+  display: inline-block;
+  height: 48px;
+  width: 48px;
+}
+.item-iconview-price{
+  display: inline-block;
+  text-align: center;
+  height: 18px;
+  width: 48px;
+  position: absolute;
+  top: 48px;
+  left: 0px;
+}
+.item-iconview-count {
+  text-align: right;
+  position: absolute;
+  top: 30px;
+  left: 34px;
+
+}
+
+.iconview-block {
+  border: solid 4px blue;
+}
+
+#item-iconview-pane {
+  background-color: #993300;
+}
+
+// Drag and drop support
+.dropzone-iconview {
+  display: inline-block;
+  vertical-align: top;
+
+  background-color: #ccc;
+  border: dashed 4px transparent;
+  border-radius: 4px;
+  margin: 3px;
+  height: 80px;
+  width: 62px;
+  transition: background-color 0.3s;
+}
+
+.drop-active {
+  border-color: #aaa;
+}
+
+.drop-target {
+  background-color: #29e;
+  border-color: #fff;
+  border-style: solid;
+}
+
+.drag-drop {
+  transform: translate(0px, 0px);
+  transition: background-color 0.3s;
+}
+
+.drag-drop.can-drop {
+  border-color: #000;
+  background-color: #4e4;
+}
