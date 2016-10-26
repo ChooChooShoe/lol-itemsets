@@ -17,7 +17,7 @@ npm start
 ```
 npm install
 ```
-It will also download Electron runtime, and install dependencies for second package.json file inside app folder. Some of the dependencies are pre-installed in the app/ directory.
+It will also download Electron runtime, and install dependencies for second package.json file inside app folder. Some of the dependencies are pre-installed in the app folder.
 
 ### Starting the app
 ```

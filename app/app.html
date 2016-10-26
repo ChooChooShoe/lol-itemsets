@@ -2,35 +2,37 @@
 <html>
 <head>
 	<title>Electron Boilerplate</title>
-	<link href="stylesheets/main.css" rel="stylesheet">
-  <!--link href="pure-release-0.6.0/pure-min.css" rel="stylesheet"-->
-	<link href="css/photon.min.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="stylesheets/main.css">
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<!-- link rel="stylesheet" type="text/css" href="pure-release-0.6.0/pure.min.css"-->
+	<!-- link rel="stylesheet" type="text/css" href="semantic/semantic.min.css"-->
+
+	<!-- script src="semantic/semantic.min.js"></script-->
 	<script src="helpers/context_menu.js"></script>
 	<script src="helpers/external_links.js"></script>
 	<script src="js/interact.min.js"></script>
 	<script src="app.js"></script>
-
-  <script id="template-iconview" type="text/x-handlebars-template">
-    <div class="draggable drag-drop item-iconview">
-      <img class="item-iconview-icon" src="{{img}}">
-      <span class="item-iconview-count">{{count}}</span>
-      <span class= "item-iconview-price">{{price}}</span>
-    </div>
-  </script>
-
+	<script src="js/bootstrap.min.js"></script>
 </head>
 <body>
-	<div class="window">
-		<!-- Your app's content goes inside .window-content -->
-		<div class="window-content">
-			<div class="pane-group">
-				<div class="pane">
-					<a class="pure-menu-heading2" href="#">Item Sets</a>
-					<nav lass="nav-group">
-						<a class="btn btn-default" href="#"><span class="icon icon-home"></span>Add</a> <a class="btn btn-default" href="#"><span class="icon icon-install"></span>Save</a> <a class=
-						"btn btn-default" href="#"><span class="icon icon-undo"></span>Undo</a> <a class="btn btn-default" href="#"><span class="icon icon-stop"></span>Delete</a>
+	<div class="container-fluid">
+			<div class="row">
+				<div class="col-sm-4">
+					<h3 class="uk-panel-title">Item Sets</h3>
+					<nav class="nav-group">
+						<button class="uk-button">
+							Save
+						</button>
+						<button class="uk-button">
+							<i class="add icon"></i>
+							Add
+						</button>
+						<button class="uk-button">
+							<i class="save icon"></i>
+							Save
+						</button>
 					</nav>
-					<ul class="list-group" id="itemset-ul">
+					<ul class="uk-list uk-list-striped" id="itemset-ul">
 						<li class="list-group-item selected" onclick="return eventItemsetOnClick(1);">
 							<a href="#">Home</a>
 						</li>
@@ -46,33 +48,46 @@
 							<a class="pure-menu-link" href="#">Contact</a>
 						</li>
 					</ul>
-				</div>
-				<div class="pane" id="item-list">
+			</div>
 
+				<div class="col-sm-4" id="item-list">
+					<input class="search" placeholder="Search" />
+					<button class="sort" data-sort="count">Sort by count</button>
+					<button class="sort" data-sort="price">Sort by price</button>
+					<div class="list gridview containers" id="item-source-ul"></div>
+			</div>
 
-          						<div class="draggable drag-drop item-iconview">
-          							<img class="item-iconview-icon" src="http://ddragon.leagueoflegends.com/cdn/6.21.1/img/item/1001.png">
-                        <span class="item-iconview-count">2</span>
-                        <span class= "item-iconview-price">350</span>
-          						</div>
-          					<div class="draggable drag-drop item-iconview">
-          						<img class="item-iconview-icon" src="http://ddragon.leagueoflegends.com/cdn/6.21.1/img/item/1001.png">
-                      <span class="item-iconview-count">2</span>
-                      <span class= "item-iconview-price">Free</span>
-          					</div>
-				</div>
-				<div class="pane pane-iconview" id="item-iconview-pane">
-          <div class="iconview-block">
+				<div class="col-sm-4" id="item-iconview-pane">
+					<div class="row iconview-block container" id="right">
+						<div class="col-md-1">Drag to add items</div>
+					</div>
+
+          <div class="row iconview-block">
             <div><input placeholder="type block name here.." spellcheck="true" class="iconview-block-name"></input>
             </div>
-  					<div class="dropzone-iconview"></div>
-            <div class="dropzone-iconview"></div>
+  					<div class="itemholder">
+																		<div class="draggable drag-drop item-iconview item">
+																			<img class="item-iconview-icon" src="http://ddragon.leagueoflegends.com/cdn/6.21.1/img/item/1001.png">
+																			<span class="item-iconview-count">2</span>
+																			<span class= "item-iconview-price">350</span>
+																		</div>
+						</div>
+            <div class="dropzone itemholder thin"></div>
+  					<div class="itemholder">
+
+							<div class="draggable drag-drop item-iconview item">
+							<img class="item-iconview-icon" src="http://ddragon.leagueoflegends.com/cdn/6.21.1/img/item/1001.png">
+							<span class="item-iconview-count">2</span>
+							<span class= "item-iconview-price">Free</span>
+							</div>
+						</div>
+            <div class="dropzone itemholder"></div>
+            <div class="dropzone itemholder"></div>
+            <div class="dropzone itemholder"></div>
           </div>
-					<div class="dropzone-iconview"></div>
-          <div class="dropzone-iconview"></div>
-				</div>
 			</div>
-		</div>
+	</div>
+		<div id="dragbox"></div>
 	</div>
 </body>
 </html>

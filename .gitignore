@@ -9,7 +9,9 @@ Thumbs.db
 /app/app.js
 /app/background.js
 /app/env.json
-/app/**/*.map
+#only maps from root, so yes to bootstrap
+#/app/**/*.map
+/app/*.map
 
 /dist
 
