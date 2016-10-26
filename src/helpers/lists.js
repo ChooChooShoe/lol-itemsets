@@ -9,12 +9,12 @@ var appDir = jetpack.cwd(app.getAppPath());
 var itemjson = appDir.read('data/item.json', 'json');
 
   var options = {
-    item: '<div class="item-source"><img class="image"><span class="name"></span><span class="price"></span></div>',
+    item: '<div class="item-source"><div class="image"></div><div class="name"></div><div class="price"></div></div>',
     valueNames: [
       'price',
       'name',
       { data: ['id'] },
-      { name: 'image', attr: 'src' }
+      { name: 'image', attr: 'style' }
     ]
   };
 
@@ -24,7 +24,9 @@ var itemjson = appDir.read('data/item.json', 'json');
       price: itemjson.data[i].gold.total,
       name: itemjson.data[i].name,
       id: i,
-      image: 'http://ddragon.leagueoflegends.com/cdn/6.21.1/img/item/'+itemjson.data[i].image.full
+      image: "background: url('img/sprite/"
+      + itemjson.data[i].image.sprite + "') "+ -itemjson.data[i].image.x +"px " + -itemjson.data[i].image.y + "px;"
+      + " width: "+itemjson.data[i].image.w + "px; height: "+ itemjson.data[i].image.h+"px;"
     });
   }
   //source = [];

@@ -5,11 +5,12 @@
 import os from 'os'; // native node.js module
 import { remote } from 'electron'; // native electron module
 import jetpack from 'fs-jetpack'; // module loaded from npm
+import dragula from 'dragula';
 import { greet } from './hello_world/hello_world'; // code authored by you in this project
 import InteractSupport from './helpers/interact_support';
 import RiotItem from './helpers/riot_item';
+import DragulaSupport from './helpers/dragula_support';
 import ListsHelper from './helpers/lists';
-import dragula from 'dragula';
 import env from './env';
 window.$ = window.jQuery = require('jquery');
 //import Handlebars from 'handlebars';
@@ -28,7 +29,22 @@ console.log('The author of this app is:', appDir.read('package.json', 'json').au
 document.addEventListener('DOMContentLoaded', function () {
     var itemlist = ListsHelper();
     var boots = RiotItem(1001);
-    dragula([document.querySelector('#item-source-ul'),document.querySelector('#right')]);
+    DragulaSupport();
+    dragula([document.querySelector('#item-source-ul'),document.querySelector('#tab-items')],{
+      copy: function (el, source) {
+        return source === document.querySelector('#item-source-ul')
+      },
+      accepts: function (el, target) {
+        return target !== document.querySelector('#item-source-ul')
+      }
+    });
+
+    $('#right-tab a').click(function (e) {
+      e.preventDefault()
+      $(this).tab('show')
+    })
+
+
     /*var itemsets = document.getElementById('itemset-ul');
     for (var i=0;i<1;i++){
       var li = document.createElement("li");
