@@ -1,15 +1,8 @@
 require('list.js');
-import { remote } from 'electron'; // native electron module
-import jetpack from 'fs-jetpack';
 
 export default function () {
-  var app = remote.app;
-  var appDir = jetpack.cwd(app.getAppPath());
-
-  var itemjson = appDir.read('data/item.json', 'json');
-
   var options = {
-    item: '<div class="item-source"><div class="image"></div><div class="name"></div><div class="price"></div></div>',
+    item: '<div class="item-block"><div class="image"></div><div class="name"></div><div class="price"></div></div>',
     valueNames: [
       'price',
       'name',
@@ -29,9 +22,7 @@ export default function () {
       + " width: "+itemjson.data[i].image.w + "px; height: "+ itemjson.data[i].image.h+"px;"
     });
   }
+  var blocklist = new List('tab-items', options, source);
   //source = [];
-  return new List('item-list', options, source);
-
-  
-
+  return {blocklist: blocklist};
 }

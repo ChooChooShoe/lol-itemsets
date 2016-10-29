@@ -52,10 +52,49 @@
 
 				<div class="col-sm-4" id="item-list">
 					<input class="search" placeholder="Search" />
-					<button class="sort" data-sort="count">Sort by count</button>
+					<button class="sort" data-sort="name">Sort by name</button>
 					<button class="sort" data-sort="price">Sort by price</button>
-					<div class="list gridview containers" id="item-source-ul"></div>
+
+
+					<div id="advanced" style="margin-left: 30px;">
+			<div><div data-force="5" class="layer title title_xl">Advanced groups</div></div>
+
+			<div style="width: 25%; float: left; margin-top: 15px; margin-left: 10px" class="block__list block__list_words">
+				<div class="block__list-title">pull &amp; put</div>
+				<ul id="advanced-1">
+					<li>Meat</li>
+					<li>Potato</li>
+					<li>Tea</li>
+				</ul>
 			</div>
+
+			<div style="width: 25%; float: left; margin-top: 15px; margin-left: 10px" class="block__list block__list_words">
+				<div class="block__list-title">only pull (clone) no&nbsp;reordering</div>
+				<ul id="advanced-2">
+					<li>Sex</li>
+					<li>Drugs</li>
+					<li>Rock'n'roll</li>
+				</ul>
+			</div>
+
+			<div style="width: 25%; float: left; margin-top: 15px; margin-left: 10px" class="block__list block__list_words">
+				<div class="block__list-title">only put</div>
+				<ul id="advanced-3">
+					<li>Money</li>
+					<li>Force</li>
+					<li>Agility</li>
+				</ul>
+			</div>
+
+			<div style="clear: both"></div>
+		</div>
+
+		
+					<div class="list gridview container" id="item-source-ul"></div>
+
+
+
+				</div>
 
 				<div class="col-sm-4" id="item-iconview-pane">
 
@@ -70,10 +109,17 @@
 
 <div id="right-tab-content" class="tab-content">
   <div class="tab-pane active" id="tab-items" role="tabpanel">
+		<button type="button" class="btn btn-primary">Sort by </button>
+		<button type="button" class="btn btn-primary">Sort by </button>
+		<button type="button" class="btn btn-primary">Sort by </button>
+		<button type="button" class="btn btn-primary">Sort by </button>
+		<div class="list gridview container" id="item-source-ul"></div>
+
+
 		<div class="card card-block">
-			<h4 class="card-title">BLOCK ANME</h4>
-			<p class="card-text">
-				dsddsdsdad
+			<h4 class="card-title">no title</h4>
+			<p class="card-text dragula-container">
+				Click to add block
 			</p>
 		</div>
 	</div>

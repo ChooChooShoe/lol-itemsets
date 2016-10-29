@@ -9,7 +9,7 @@ import dragula from 'dragula';
 import { greet } from './hello_world/hello_world'; // code authored by you in this project
 import InteractSupport from './helpers/interact_support';
 import RiotItem from './helpers/riot_item';
-import DragulaSupport from './helpers/dragula_support';
+import Sortable  from 'sortablejs';
 import ListsHelper from './helpers/lists';
 import env from './env';
 window.$ = window.jQuery = require('jquery');
@@ -29,20 +29,62 @@ console.log('The author of this app is:', appDir.read('package.json', 'json').au
 document.addEventListener('DOMContentLoaded', function () {
     var itemlist = ListsHelper();
     var boots = RiotItem(1001);
-    DragulaSupport();
-    dragula([document.querySelector('#item-source-ul'),document.querySelector('#tab-items')],{
+
+    	[{
+    		name: 'advanced',
+    		pull: true,
+    		put: true
+    	},
+    	{
+    		name: 'advanced',
+    		pull: 'clone',
+    		put: false
+    	}, {
+    		name: 'advanced',
+    		pull: false,
+    		put: true
+    	}].forEach(function (groupOpts, i) {
+    		Sortable.create(document.getElementById('advanced-' + (i + 1)), {
+    			sort: (i != 1),
+    			group: groupOpts,
+    			animation: 150
+    		});
+    	});
+
+    //DragulaSupport();
+    /*dragula([document.querySelector('#item-source-ul')],{
+      isContainer: function (el) {
+        //can be dropped or pulled from any .dragula-container
+        return el.classList.contains('dragula-container');
+      },
       copy: function (el, source) {
-        return source === document.querySelector('#item-source-ul')
+        //only copy from source list
+        return source === $('#item-source-ul')[0]
       },
       accepts: function (el, target) {
-        return target !== document.querySelector('#item-source-ul')
-      }
+        //no dropping in the source list
+        return target !== $('#item-source-ul')[0]
+      },
+      removeOnSpill: true
     });
 
     $('#right-tab a').click(function (e) {
       e.preventDefault()
       $(this).tab('show')
     })
+
+
+      function dragMoveListener (event) {
+        var target = event.target;
+
+        // translate the element
+        target.style.transform = 'translate(' + x + 'px, ' + y + 'px)';
+
+        // update the posiion attributes
+        target.setAttribute('data-x', x);
+        target.setAttribute('data-y', y);
+      }*/
+
 
 
     /*var itemsets = document.getElementById('itemset-ul');
