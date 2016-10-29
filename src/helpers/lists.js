@@ -3,6 +3,16 @@ import { remote } from 'electron'; // native electron module
 import jetpack from 'fs-jetpack';
 
 export default function () {
+  String.prototype.format = function() {
+    var args = arguments;
+    return this.replace(/{(\d+)}/g, function(match, number) {
+      return typeof args[number] != 'undefined'
+        ? args[number]
+        : match
+      ;
+    });
+  };
+
   var app = remote.app;
   var appDir = jetpack.cwd(app.getAppPath());
 
@@ -19,19 +29,17 @@ export default function () {
   };
 
   var source = [];
-  for(var i in itemjson.data ){
+  var d = itemjson.data;
+  for(var i in d ){
     source.push({
-      price: itemjson.data[i].gold.total,
-      name: itemjson.data[i].name,
+      price: d[i].gold.total,
+      name: d[i].name,
       id: i,
-      image: "background: url('img/sprite/"
-      + itemjson.data[i].image.sprite + "') "+ -itemjson.data[i].image.x +"px " + -itemjson.data[i].image.y + "px;"
-      + " width: "+itemjson.data[i].image.w + "px; height: "+ itemjson.data[i].image.h+"px;"
+      image: "background: url('img/sprite/{0}') {1}px {2}px; width: {3}px; height: {4}px;".format(
+        d[i].image.sprite, -d[i].image.x, -d[i].image.y, d[i].image.w, d[i].image.h)
     });
   }
   //source = [];
   return new List('item-list', options, source);
-
-  
 
 }

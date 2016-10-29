@@ -1,28 +1,24 @@
 require('list.js');
+export default function (source) {
+  if (source === undefined)
+    source = [];
 
-export default function () {
   var options = {
-    item: '<div class="item-block"><div class="image"></div><div class="name"></div><div class="price"></div></div>',
+    item: '<li class="card card-block"><h4 class="card-title title">no title</h4></li>',
     valueNames: [
-      'price',
-      'name',
-      { data: ['id'] },
-      { name: 'image', attr: 'style' }
+      'title',
+      { data: ['id'] }
     ]
   };
 
-  var source = [];
-  for(var i in itemjson.data ){
+  //var d = itemjson.data;
+  for(var i =0; i < 2; i++ ){
     source.push({
-      price: itemjson.data[i].gold.total,
-      name: itemjson.data[i].name,
-      id: i,
-      image: "background: url('img/sprite/"
-      + itemjson.data[i].image.sprite + "') "+ -itemjson.data[i].image.x +"px " + -itemjson.data[i].image.y + "px;"
-      + " width: "+itemjson.data[i].image.w + "px; height: "+ itemjson.data[i].image.h+"px;"
+      title:'Block ' + (i+1),
+      id: i
     });
   }
-  var blocklist = new List('tab-items', options, source);
   //source = [];
-  return {blocklist: blocklist};
+  return new List('tab-items', options, source);
+
 }
