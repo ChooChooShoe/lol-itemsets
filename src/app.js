@@ -5,9 +5,8 @@
 import os from 'os'; // native node.js module
 import { remote } from 'electron'; // native electron module
 import jetpack from 'fs-jetpack'; // module loaded from npm
-import dragula from 'dragula';
-import { greet } from './hello_world/hello_world'; // code authored by you in this project
-import ItemblockSupport from './helpers/itemblock_support';
+
+import ItemblockSupport from './support/itemblocks';
 import RiotItem from './helpers/riot_item';
 import Sortable  from 'sortablejs';
 import ListsHelper from './helpers/lists';
@@ -28,11 +27,13 @@ console.log('The author of this app is:', appDir.read('package.json', 'json').au
 
 document.addEventListener('DOMContentLoaded', function () {
     var itemlist = ListsHelper();
-    var blcoks = ItemblockSupport();
+    var itemblocks = ItemblockSupport();
+    itemblocks.addBlock("ASFF", 76);
+
     var boots = RiotItem(1001);
 
         		Sortable.create(document.getElementById('item-source-ul'), {
-        			sort: true,
+        			sort: false,
         			group: {
             		name: 'advanced',
             		pull: 'clone',
@@ -41,18 +42,8 @@ document.addEventListener('DOMContentLoaded', function () {
         			animation: 150
         		});
 
-                		Sortable.create(document.querySelector('.container'), {
-                			sort: true,
-                			group: {
-                    		name: 'advanced',
-                    		pull: 'clone',
-                    		put: true
-                    	},
-                			animation: 150
-                		});
-
       $("add-block").click(function(){
-          //alert("The paragraph was clicked.");
+          console.log("The paragraph was clicked.");
       });
 
     //DragulaSupport();

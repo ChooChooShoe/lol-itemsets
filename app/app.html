@@ -16,105 +16,44 @@
 </head>
 <body>
 	<div class="container-fluid">
-			<div class="row">
-				<div class="col-sm-4">
-					<h3 class="uk-panel-title">Item Sets</h3>
-					<nav class="nav-group">
-						<button class="uk-button">
-							Save
-						</button>
-						<button class="uk-button">
-							<i class="add icon"></i>
-							Add
-						</button>
-						<button class="uk-button">
-							<i class="save icon"></i>
-							Save
-						</button>
-					</nav>
-					<ul class="uk-list uk-list-striped" id="itemset-ul">
-						<li class="list-group-item selected" onclick="return eventItemsetOnClick(1);">
-							<a href="#">Home</a>
-						</li>
-						<li class="list-group-item active" onclick="return eventItemsetOnClick(1);">
-							<div class="media-body">
-								<strong>List item title</strong>
-							</div>
-						</li>
-						<li class="menu-item-divided pure-menu-selected">
-							<a class="pure-menu-link" href="#">Services</a>
-						</li>
-						<li class="list-group-item">
-							<a class="pure-menu-link" href="#">Contact</a>
-						</li>
-					</ul>
-			</div>
-
-				<div class="col-sm-4" id="item-list">
-					<input class="search" placeholder="Search" />
-					<button class="sort" data-sort="name">Sort by name</button>
-					<button class="sort" data-sort="price">Sort by price</button>
-					<div class="list gridview container" id="item-source-ul"></div>
-
+		<div class="row">
+			<div class="col-sm-4">
+				<h3>Item Sets</h3>
+				<nav class="btn-group" role="group">
+					<button class="btn" id="btn-add" type="button">Save</button> <button class="btn" id="btn-add" type="button">Add</button> <button class="btn btn-primary" id="btn-save" type="button">Save</button>
+				</nav>
+				<div class="list-group">
+					<a href="#" class="list-group-item list-group-item-action"><span class="tag tag-default tag-pill float-xs-right">14</span> Cras justo odio</a>
+					<a href="#" class="list-group-item list-group-item-action"><span class="tag tag-default tag-pill float-xs-right">2</span> Dapibus ac facilisis in</a>
+					<a href="#" class="list-group-item list-group-item-action"><span class="tag tag-default tag-pill float-xs-right">1</span> Morbi leo risus</a>
 				</div>
-
-				<div class="col-sm-4" id="item-iconview-pane">
-
-<ul id="right-tab" class="nav nav-tabs" role="tablist">
-  <li class="nav-item">
-    <a class="nav-link active" data-toggle="tab" href="#tab-items" role="tab">Items</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" data-toggle="tab" href="#tab-maps" role="tab">Maps/Champions</a>
-  </li>
-</ul>
-
-<div id="right-tab-content" class="tab-content">
-  <div class="tab-pane active" id="tab-items" role="tabpanel">
-		<button type="button" class="btn btn-primary" id="add-block">Add Block</button>
-		<button type="button" class="btn btn-primary" id="ff">Sort by </button>
-		<button type="button" class="btn btn-primary">Sort by </button>
-		<button type="button" class="btn btn-primary">Sort by </button>
-		<ul class="list gridview container" id="blocks-ul">
-
-								<li class="card card-block">
-									<h4 class="card-title">no title</h4>
-								</li>
-													<li class="card card-block">
-														<h4 class="card-title">title 2</h4>
-													</li>
-
-		</ul>
-	</div>
-  <div class="tab-pane" id="tab-maps" role="tabpanel">
-	</div>
-</div>
-
-          <!--div class="row iconview-block">
-            <div><input placeholder="type block name here.." spellcheck="true" class="iconview-block-name"></input>
-            </div>
-  					<div class="itemholder">
-																		<div class="draggable drag-drop item-iconview item">
-																			<img class="item-iconview-icon">
-																			<span class="item-iconview-count">2</span>
-																			<span class= "item-iconview-price">350</span>
-																		</div>
-						</div>
-            <div class="dropzone itemholder thin"></div>
-  					<div class="itemholder">
-
-							<div class="draggable drag-drop item-iconview item">
-							<img class="item-iconview-icon">
-							<span class="item-iconview-count">2</span>
-							<span class= "item-iconview-price">Free</span>
-							</div>
-						</div>
-            <div class="dropzone itemholder"></div>
-            <div class="dropzone itemholder"></div>
-            <div class="dropzone itemholder"></div>
-          </div-->
 			</div>
-	</div>
+			<div class="col-sm-4" id="item-list">
+				<input class="search" placeholder="Search"> <button class="sort" data-sort="name">Sort by name</button> <button class="sort" data-sort="price">Sort by price</button>
+				<div class="list gridview container" id="item-source-ul"></div>
+			</div>
+			<div class="col-sm-4" id="item-iconview-pane">
+				<ul class="nav nav-tabs" id="right-tab" role="tablist">
+					<li class="nav-item">
+						<a class="nav-link active" data-toggle="tab" href="#tab-items" role="tab">Items</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" data-toggle="tab" href="#tab-maps" role="tab">Maps/Champions</a>
+					</li>
+				</ul>
+				<div class="tab-content" id="right-tab-content">
+					<div class="tab-pane active" id="tab-items" role="tabpanel">
+						<input aria-describedby="basic-addon1" class="form-control" id="blocks-title" placeholder="Set Name" type="text"> <button class="btn btn-primary" id="add-block" type="button">Add Block</button> <button class="btn btn-primary" id="ff" type="button">ff</button>
+						<ul class="list gridview container" id="blocks-ul">
+							<li class="card card-block">
+								<h4 class="card-title">no title</h4>
+							</li>
+						</ul>
+					</div>
+					<div class="tab-pane" id="tab-maps" role="tabpanel"></div>
+				</div>
+			</div>
+		</div>
 		<div id="dragbox"></div>
 	</div>
 </body>
