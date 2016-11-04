@@ -65,36 +65,6 @@ body {
   }
 }
 
-.item-iconview {
-  color: #fff;
-  display: inline-block;
-  border: solid 2px red;
-  background-color: #773333;
-  padding: 1px;
-  height: 72px;
-  width: 54px;
-}
-.item-iconview-icon {
-  display: inline-block;
-  height: 48px;
-  width: 48px;
-}
-.item-iconview-price{
-  display: inline-block;
-  text-align: center;
-  height: 18px;
-  width: 48px;
-  position: absolute;
-  top: 48px;
-  left: 0px;
-}
-.item-iconview-count {
-  text-align: right;
-  position: absolute;
-  top: 30px;
-  left: 34px;
-
-}
 
 .iconview-block {
   border: solid 4px blue;
@@ -109,16 +79,38 @@ body {
 }
 
 // Drag and drop support
-.itemholder {
-  display: inline-block;
+.item-source {
   vertical-align: top;
-  background-color: #fff;
-  border: dashed 4px transparent;
-  border-radius: 4px;
-  margin: 3px;
-  height: 80px;
-  width: 62px;
+    color: #fff;
+    display: inline-block;
+    border: solid 2px red;
+    background-color: #773333;
+    padding: 1px;
+    height: 72px;
+    width: 54px;
+
+  .image {
+    display: inline-block;
+    height: 48px;
+    width: 48px;
+  }
+  .price{
+    display: inline-block;
+    text-align: center;
+    height: 18px;
+    width: 48px;
+    position: absolute;
+    top: 48px;
+    left: 0px;
+  }
+  .count {
+    text-align: right;
+    position: absolute;
+    top: 30px;
+    left: 34px;
+  }
 }
+
 .dropzone {
   background-color: #ccc;
   transition: background-color 0.3s;
@@ -146,26 +138,4 @@ body {
 .drag-drop.can-drop {
   border-color: #000;
   background-color: #4e4;
-}
-.gu-mirror {
-  position: fixed !important;
-  margin: 0 !important;
-  z-index: 9999 !important;
-  opacity: 0.8;
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
-  filter: alpha(opacity=80);
-}
-.gu-hide {
-  display: none !important;
-}
-.gu-unselectable {
-  -webkit-user-select: none !important;
-  -moz-user-select: none !important;
-  -ms-user-select: none !important;
-  user-select: none !important;
-}
-.gu-transit {
-  opacity: 0.2;
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=20)";
-  filter: alpha(opacity=20);
 }

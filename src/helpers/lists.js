@@ -19,10 +19,11 @@ export default function () {
   var itemjson = appDir.read('data/item.json', 'json');
 
   var options = {
-    item: '<div class="item-source"><div class="image"></div><div class="name"></div><div class="price"></div></div>',
+    item: '<li class="item-source"><div class="image"></div><div class="name"><div class="count"></div><div class="price"></div></li>',
     valueNames: [
       'price',
       'name',
+      'count',
       { data: ['id'] },
       { name: 'image', attr: 'style' }
     ]

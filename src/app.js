@@ -32,19 +32,96 @@ document.addEventListener('DOMContentLoaded', function () {
 
     var boots = RiotItem(1001);
 
-        		Sortable.create(document.getElementById('item-source-ul'), {
-        			sort: false,
-        			group: {
-            		name: 'advanced',
-            		pull: 'clone',
-            		put: true
-            	},
-        			animation: 150
-        		});
+    Sortable.create(document.getElementById('item-source-ul'), {
+    	sort: false,
+      group: {
+      	name: 'advanced',
+      	pull: 'clone',
+      	put: false
+      },
+      dataIdAttr: 'sort-id',
+      ignore:'',
+      animation: 150,
+      setData: function (/** DataTransfer */dataTransfer, /** HTMLElement*/dragEl) {
+        dataTransfer.setData('text/html', dragEl.childNodes[0]); // `dataTransfer` object of HTML5 DragEvent
+        console.log(dragEl.childNodes[0]);
+      },
 
-      $("add-block").click(function(){
-          console.log("The paragraph was clicked.");
-      });
+    // Element is chosen
+    onChoose: function (/**Event*/evt) {
+        console.log(evt);
+        evt.oldIndex;  // element index within parent
+    },
+
+    // Element dragging started
+    onStart: function (/**Event*/evt) {
+        console.log(evt);
+        evt.oldIndex;  // element index within parent
+    },
+
+    // Element dragging ended
+    onEnd: function (/**Event*/evt) {
+        console.log(evt);
+        evt.oldIndex;  // element's old index within parent
+        evt.newIndex;  // element's new index within parent
+    },
+
+    // Element is dropped into the list from another list
+    onAdd: function (/**Event*/evt) {
+        console.log(evt);
+        var itemEl = evt.item;  // dragged HTMLElement
+        evt.from;  // previous list
+        // + indexes from onEnd
+    },
+
+    // Changed sorting within list
+    onUpdate: function (/**Event*/evt) {
+        console.log(evt);
+        var itemEl = evt.item;  // dragged HTMLElement
+        // + indexes from onEnd
+    },
+
+    // Called by any change to the list (add / update / remove)
+    onSort: function (/**Event*/evt) {
+        console.log(evt);
+        // same properties as onUpdate
+    },
+
+    // Element is removed from the list into another list
+    onRemove: function (/**Event*/evt) {
+        console.log(evt);
+        // same properties as onUpdate
+    },
+
+    // Attempt to drag a filtered element
+    onFilter: function (/**Event*/evt) {
+        console.log(evt);
+        var itemEl = evt.item;  // HTMLElement receiving the `mousedown|tapstart` event.
+    },
+
+    // Event when you move an item in the list or between lists
+    onMove: function (/**Event*/evt, /**Event*/originalEvent) {
+        console.log(evt);
+        // Example: http://jsbin.com/tuyafe/1/edit?js,output
+        evt.dragged; // dragged HTMLElement
+        evt.draggedRect; // TextRectangle {left, top, right и bottom}
+        evt.related; // HTMLElement on which have guided
+        evt.relatedRect; // TextRectangle
+        //originalEvent.clientY; // mouse position
+        // return false; — for cancel
+    },
+
+    // Called when creating a clone of element
+    onClone: function (/**Event*/evt) {
+        console.log(evt);
+        var origEl = evt.item;
+        var cloneEl = evt.clone;
+    }
+    });
+
+    $("add-block").click(function(){
+      console.log("The paragraph was clicked.");
+    });
 
     //DragulaSupport();
     /*dragula([document.querySelector('#item-source-ul')],{
