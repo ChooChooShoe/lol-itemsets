@@ -4,13 +4,8 @@
 	<title>Electron Boilerplate</title>
 	<link rel="stylesheet" type="text/css" href="stylesheets/main.css">
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-	<!-- link rel="stylesheet" type="text/css" href="pure-release-0.6.0/pure.min.css"-->
-	<!-- link rel="stylesheet" type="text/css" href="semantic/semantic.min.css"-->
-
-	<!-- script src="semantic/semantic.min.js"></script-->
 	<script src="helpers/context_menu.js"></script>
 	<script src="helpers/external_links.js"></script>
-	<script src="js/interact.min.js"></script>
 	<script src="app.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 </head>
@@ -20,7 +15,9 @@
 			<div class="col-sm-4">
 				<h3>Item Sets</h3>
 				<nav class="btn-group" role="group">
-					<button class="btn" id="btn-add" type="button">Save</button> <button class="btn" id="btn-add" type="button">Add</button> <button class="btn btn-primary" id="btn-save" type="button">Save</button>
+					<button class="btn" id="btn-add" type="button">Add 1</button>
+					<button class="btn" id="btn-add2" type="button" disabled>Add 2</button>
+					<button class="btn btn-primary" id="btn-save" type="button">Save</button>
 				</nav>
 				<div class="list-group">
 					<a href="#" class="list-group-item list-group-item-action"><span class="tag tag-default tag-pill float-xs-right">14</span> Cras justo odio</a>
@@ -54,7 +51,6 @@
 				</div>
 			</div>
 		</div>
-		<div id="dragbox"></div>
 	</div>
 </body>
 </html>

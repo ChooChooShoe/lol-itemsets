@@ -3,7 +3,7 @@
 
 // Use new ES6 modules syntax for everything.
 import os from 'os'; // native node.js module
-import { remote } from 'electron'; // native electron module
+import { remote, ipcRenderer } from 'electron'; // native electron module
 import jetpack from 'fs-jetpack'; // module loaded from npm
 
 import ItemblockSupport from './support/itemblocks';
@@ -12,6 +12,7 @@ import Sortable  from 'sortablejs';
 import ListsHelper from './helpers/lists';
 import env from './env';
 window.$ = window.jQuery = require('jquery');
+import docbuilder from './support/documentbuilder'
 //import Handlebars from 'handlebars';
 
 console.log('Loaded environment variables:', env);
@@ -25,12 +26,25 @@ console.log('The author of this app is:', appDir.read('package.json', 'json').au
 
 //window.dragMoveListener = InteractSupport();
 
+//console.log(ipcRenderer.sendSync('synchronous-message', 'ping')) // prints "pong"
+
+ipcRenderer.on('asynchronous-reply', (event, arg) => {
+  console.log(arg) // prints "pong"
+})
+ipcRenderer.send('asynchronous-message', 'ping')
+
 document.addEventListener('DOMContentLoaded', function () {
     var itemlist = ListsHelper();
     var itemblocks = ItemblockSupport();
     itemblocks.addBlock("ASFF", 76);
 
     var boots = RiotItem(1001);
+
+    $("#btn-save").click(function() {
+      $( this ).prop( "disabled", true );
+      console.log(remote.dialog.showOpenDialog(BrowserWindow.getCurrentWindow(), {properties: ['openFile', 'openDirectory', 'multiSelections']}))
+      $( this ).prop( "disabled", false );
+    });
 
     Sortable.create(document.getElementById('item-source-ul'), {
     	sort: false,
@@ -39,28 +53,27 @@ document.addEventListener('DOMContentLoaded', function () {
       	pull: 'clone',
       	put: false
       },
-      dataIdAttr: 'sort-id',
-      ignore:'',
       animation: 150,
-      setData: function (/** DataTransfer */dataTransfer, /** HTMLElement*/dragEl) {
-        dataTransfer.setData('text/html', dragEl.childNodes[0]); // `dataTransfer` object of HTML5 DragEvent
-        console.log(dragEl.childNodes[0]);
-      },
 
     // Element is chosen
     onChoose: function (/**Event*/evt) {
+        console.log("onChoose");
         console.log(evt);
         evt.oldIndex;  // element index within parent
     },
 
     // Element dragging started
     onStart: function (/**Event*/evt) {
+        console.log("onStart");
         console.log(evt);
+        $(evt.item).style = 'height: 72px; width: 54px;';
+
         evt.oldIndex;  // element index within parent
     },
 
     // Element dragging ended
     onEnd: function (/**Event*/evt) {
+        console.log("onEnd");
         console.log(evt);
         evt.oldIndex;  // element's old index within parent
         evt.newIndex;  // element's new index within parent
@@ -68,6 +81,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Element is dropped into the list from another list
     onAdd: function (/**Event*/evt) {
+        console.log("onAdd");
         console.log(evt);
         var itemEl = evt.item;  // dragged HTMLElement
         evt.from;  // previous list
@@ -76,6 +90,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Changed sorting within list
     onUpdate: function (/**Event*/evt) {
+        console.log("onUpdate");
         console.log(evt);
         var itemEl = evt.item;  // dragged HTMLElement
         // + indexes from onEnd
@@ -83,24 +98,28 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Called by any change to the list (add / update / remove)
     onSort: function (/**Event*/evt) {
+        console.log("onSort");
         console.log(evt);
         // same properties as onUpdate
     },
 
     // Element is removed from the list into another list
     onRemove: function (/**Event*/evt) {
+        console.log("onRemove");
         console.log(evt);
         // same properties as onUpdate
     },
 
     // Attempt to drag a filtered element
     onFilter: function (/**Event*/evt) {
+        console.log("onFilter");
         console.log(evt);
         var itemEl = evt.item;  // HTMLElement receiving the `mousedown|tapstart` event.
     },
 
     // Event when you move an item in the list or between lists
     onMove: function (/**Event*/evt, /**Event*/originalEvent) {
+        console.log("onMove");
         console.log(evt);
         // Example: http://jsbin.com/tuyafe/1/edit?js,output
         evt.dragged; // dragged HTMLElement
@@ -113,14 +132,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Called when creating a clone of element
     onClone: function (/**Event*/evt) {
+        console.log("onRemove");
         console.log(evt);
         var origEl = evt.item;
         var cloneEl = evt.clone;
     }
-    });
-
-    $("add-block").click(function(){
-      console.log("The paragraph was clicked.");
     });
 
     //DragulaSupport();
